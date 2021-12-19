@@ -1,4 +1,4 @@
-from database import Connection
+from models.database import Connection
 
 
 def read_tables(path):
