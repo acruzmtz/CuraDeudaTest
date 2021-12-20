@@ -34,7 +34,7 @@ que pueda ejecutarse a demanda (seed script).
   ## python3 app.py
   
 5. Si queremos hacer uso del seed script podemos ejecutar el archivo seed_script.py
-  ## python3 python3 seed_script.py
+  ## python3 seed_script.py
   
 6. Listo, podemos hacer uso de los endpoints, estos secomunican mediante JSON.
 
