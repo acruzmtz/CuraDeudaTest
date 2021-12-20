@@ -42,10 +42,10 @@ def create_new_state(code, description):
     return True
 
 
-def create_new_township(code, description):
+def create_new_township(code, description, state_code):
     sql = f"""
-    INSERT INTO municipio (c_mnpio, d_mnpio)
-    VALUES ('{code}', '{description}')
+    INSERT INTO municipio (c_mnpio, d_mnpio, c_estado)
+    VALUES ('{code}', '{description}', {state_code})
     """
     try:
         db.execute(sql)
@@ -55,10 +55,10 @@ def create_new_township(code, description):
     return True
 
 
-def create_new_suburb(code, description):
+def create_new_suburb(code, description, township_code):
     sql = f"""
-    INSERT INTO colonia (d_codigo, d_asenta)
-    VALUES ('{code}', '{description}')
+    INSERT INTO colonia (d_codigo, d_asenta, c_mnpio)
+    VALUES ('{code}', '{description}', {township_code})
     """
     try:
         db.execute(sql)

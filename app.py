@@ -139,14 +139,15 @@ def create_new_township():
     if request.method == 'POST':
         code = request.json.get('code')
         description = request.json.get('description')
+        state_code = request.json.get('state_code')
 
-        if code and description and query.create_new_township(code, description):
+        if code and description and state_code and query.create_new_township(code, description, state_code):
             response = jsonify({
                 "message": f"The township '{description}' with code: {code} , was created successfully!"
             })
-        elif code == '' or description == '':
+        elif code == '' or description == '' or state_code == '':
             response = jsonify({
-                "message": "Please, the code and description are required!"
+                "message": "Please, the code, description and state code are required!"
             })
         else:
             response = jsonify({
@@ -162,14 +163,15 @@ def create_new_suburb():
     if request.method == 'POST':
         code = request.json.get('code')
         description = request.json.get('description')
+        township_code = request.json.get('township_code')
 
-        if code and description and query.create_new_suburb(code, description):
+        if code and description and township_code and query.create_new_suburb(code, description, township_code):
             response = jsonify({
                 "message": f"The suburb '{description}' with code: {code} , was created successfully!"
             })
-        elif code == '' or description == '':
+        elif code == '' or description == '' or township_code == '':
             response = jsonify({
-                "message": "Please, the code and description are required!"
+                "message": "Please, the code, description and township code are required!"
             })
         else:
             response = jsonify({
@@ -177,6 +179,11 @@ def create_new_suburb():
             })
 
     return response
+
+
+@app.errorhandler(404)
+def error(error):
+    return jsonify({"message": "The endpoint does not exist, please try again!"})
 
 
 if __name__ == '__main__':
